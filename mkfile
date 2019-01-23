@@ -1,0 +1,37 @@
+<$PLAN9/src/mkhdr
+
+TARG=rc
+
+OFILES=\
+	code.$O\
+	exec.$O\
+	getflags.$O\
+	glob.$O\
+	here.$O\
+	io.$O\
+	lex.$O\
+	pcmd.$O\
+	pfnc.$O\
+	simple.$O\
+	subr.$O\
+	trap.$O\
+	tree.$O\
+	unixcrap.$O\
+	var.$O\
+	y.tab.$O\
+	plan9ish.$O\
+	havefork.$O\
+
+HFILES=\
+	rc.h\
+	x.tab.h\
+	io.h\
+	exec.h\
+	fns.h\
+
+YFILES=syn.y
+
+<$PLAN9/src/mkone
+
+x.tab.h: y.tab.h
+	cmp -s x.tab.h y.tab.h || cp y.tab.h x.tab.h

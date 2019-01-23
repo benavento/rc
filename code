@@ -1,0 +1,217 @@
+code.c:90:		runq->iflast = 0;
+code.c:191:		if(!runq->iflast)
+code.c:378:		runq->iflast = t->type==IF;
+code.c:379:	else if(c0) runq->iflast = c0->type==IF;
+exec.c:19:	p->redir = p->startredir = runq?runq->redir:0;
+exec.c:42:	if(runq->argv==0)
+exec.c:44:	runq->argv->words = newword(wd, runq->argv->words);
+exec.c:51:	if(runq->argv==0)
+exec.c:53:	p = runq->argv->words;
+exec.c:56:	runq->argv->words = p->next;
+exec.c:77:	p->next = runq->argv;
+exec.c:79:	runq->argv = p;
+exec.c:85:	list *p = runq->argv;
+exec.c:89:	runq->argv = p->next;
+exec.c:108:	rp->next = runq->redir;
+exec.c:109:	runq->redir = rp;
+exec.c:185:		runq->pc++;
+exec.c:186:		(*runq->code[runq->pc-1].f)();
+exec.c:244:	switch(count(runq->argv->words)){
+exec.c:254:	file = runq->argv->words->word;
+exec.c:261:	pushredir(ROPEN, f, runq->code[runq->pc].i);
+exec.c:262:	runq->pc++;
+exec.c:281:	pushredir(RCLOSE, runq->code[runq->pc].i, 0);
+exec.c:282:	runq->pc++;
+exec.c:288:	pushredir(RDUP, runq->code[runq->pc].i, runq->code[runq->pc+1].i);
+exec.c:289:	runq->pc+=2;
+exec.c:308:			--runq->pc;
+exec.c:311:			runq->local = newvar(strdup("*"), runq->local);
+exec.c:312:			runq->local->val = copywords(starval, (struct word *)0);
+exec.c:313:			runq->local->changed = 1;
+exec.c:314:			runq->redir = runq->startredir = 0;
+exec.c:324:	if(truestatus()) runq->pc = runq->code[runq->pc].i;
+exec.c:325:	else runq->pc++;
+exec.c:333:		runq->pc++;
+exec.c:335:		runq->pc = runq->code[runq->pc].i;
+exec.c:341:	runq->pc = runq->code[runq->pc].i;
+exec.c:361:	switch(count(runq->argv->words)){
+exec.c:371:	file = runq->argv->words->word;
+exec.c:377:	pushredir(ROPEN, f, runq->code[runq->pc].i);
+exec.c:378:	runq->pc++;
+exec.c:388:	switch(count(runq->argv->words)){
+exec.c:398:	file = runq->argv->words->word;
+exec.c:404:	pushredir(ROPEN, f, runq->code[runq->pc].i);
+exec.c:405:	runq->pc++;
+exec.c:412:	while(runq->redir!=runq->startredir)
+exec.c:419:	struct redir *rp = runq->redir;
+exec.c:422:	runq->redir = rp->next;
+exec.c:444:	if(truestatus()) runq->pc++;
+exec.c:445:	else runq->pc = runq->code[runq->pc].i;
+exec.c:452:	if(truestatus()) runq->pc++;
+exec.c:453:	else runq->pc = runq->code[runq->pc].i;
+exec.c:465:	pushword(runq->code[runq->pc++].s);
+exec.c:473:	switch(count(runq->argv->words)){
+exec.c:483:	file = runq->argv->words->word;
+exec.c:489:	pushredir(ROPEN, f, runq->code[runq->pc].i);
+exec.c:490:	runq->pc++;
+exec.c:519:	subject = list2str(runq->argv->words);
+exec.c:521:	for(p = runq->argv->next->words;p;p = p->next)
+exec.c:537:	s = list2str(runq->argv->next->words);
+exec.c:538:	for(p = runq->argv->words;p;p = p->next){
+exec.c:546:		runq->pc++;
+exec.c:548:		runq->pc = runq->code[runq->pc].i;
+exec.c:571:	word *lp = runq->argv->words;
+exec.c:572:	word *rp = runq->argv->next->words;
+exec.c:573:	word *vp = runq->argv->next->next->words;
+exec.c:588:	runq->argv->words = vp;
+exec.c:595:	if(count(runq->argv->words)!=1){
+exec.c:599:	deglob(runq->argv->words->word);
+exec.c:600:	v = vlook(runq->argv->words->word);
+exec.c:604:	v->val = runq->argv->words;
+exec.c:608:	runq->argv->words = 0;
+exec.c:631:	if(count(runq->argv->words)!=1){
+exec.c:635:	s = runq->argv->words->word;
+exec.c:639:	a = runq->argv->next->words;
+exec.c:650:	runq->argv->words = a;
+exec.c:659:	if(count(runq->argv->words)!=1){
+exec.c:663:	s = runq->argv->words->word;
+exec.c:740:	if(count(runq->argv->next->words)!=1){
+exec.c:744:	s = runq->argv->next->words->word;
+exec.c:746:	a = runq->argv->next->next->words;
+exec.c:748:	a = subwords(v, count(v), runq->argv->words, a);
+exec.c:751:	runq->argv->words = a;
+exec.c:761:	if(count(runq->argv->words)!=1){
+exec.c:765:	s = runq->argv->words->word;
+exec.c:784:	if(count(runq->argv->words)!=1){
+exec.c:788:	deglob(runq->argv->words->word);
+exec.c:789:	runq->local = newvar(strdup(runq->argv->words->word), runq->local);
+exec.c:790:	runq->local->val = copywords(runq->argv->next->words, (word *)0);
+exec.c:791:	runq->local->changed = 1;
+exec.c:799:	var *v = runq->local, *hid;
+exec.c:802:	runq->local = v->next;
+exec.c:828:	end = runq->code[runq->pc].i;
+exec.c:829:	for(a = runq->argv->words;a;a = a->next){
+exec.c:833:		v->fn = codecopy(runq->code);
+exec.c:834:		v->pc = runq->pc+2;
+exec.c:837:	runq->pc = end;
+exec.c:846:	for(a = runq->argv->words;a;a = a->next){
+exec.c:874:	if(runq->pid==-1)
+exec.c:875:		setstatus(concstatus(runq->status, getstatus()));
+exec.c:879:		Waitfor(runq->pid, 1);
+exec.c:880:		runq->pid=-1;
+exec.c:894:	if(runq->iflag){
+exec.c:920:		start(codebuf, 1, runq->local);
+exec.c:934:	while(!runq->iflag) Xreturn();
+exec.c:946:	while(!runq->iflag) Xreturn();
+exec.c:975:	Unlink(runq->code[runq->pc++].s);
+exec.c:981:	if(runq->argv->words==0){
+exec.c:983:		runq->pc = runq->code[runq->pc].i;
+exec.c:986:		freelist(runq->local->val);
+exec.c:987:		runq->local->val = runq->argv->words;
+exec.c:988:		runq->local->changed = 1;
+exec.c:989:		runq->argv->words = runq->argv->words->next;
+exec.c:990:		runq->local->val->next = 0;
+exec.c:991:		runq->pc++;
+glob.c:259:	globlist1(runq->argv->words);
+glob.c:264:		a->next = runq->argv->words;
+glob.c:265:		runq->argv->words = globv;
+havefork.c:62:		start(runq->code, runq->pc+1, runq->local);
+havefork.c:63:		runq->ret = 0;
+havefork.c:68:		runq->pc = runq->code[runq->pc].i;
+havefork.c:93:		start(p->code, pc+2, runq->local);
+havefork.c:94:		runq->ret = 0;
+havefork.c:100:		start(p->code, p->code[pc].i, runq->local);
+havefork.c:139:		start(runq->code, runq->pc+1, runq->local);
+havefork.c:176:			v->next = runq->argv->words;
+havefork.c:177:			runq->argv->words = v;
+havefork.c:226:		start(p->code, pc+2, runq->local);
+havefork.c:235:		runq->ret = 0;
+havefork.c:268:		start(runq->code, runq->pc+1, runq->local);
+havefork.c:269:		runq->ret = 0;
+havefork.c:274:		runq->pc = runq->code[runq->pc].i;
+haventfork.c:40:	argv = rcargv(runq->code[runq->pc].s);
+haventfork.c:49:	runq->pc++;
+haventfork.c:74:	argv = rcargv(runq->code[runq->pc].s);
+haventfork.c:108:		v->next=runq->argv->words;
+haventfork.c:109:		runq->argv->words=v;
+haventfork.c:112:	runq->pc++;
+haventfork.c:131:	argv = rcargv(runq->code[pc+2].s);
+haventfork.c:142:	start(p->code, pc+4, runq->local);
+haventfork.c:162:	argv = rcargv(runq->code[runq->pc].s);
+haventfork.c:172:	runq->pc++;
+haventfork.c:187:	if(runq->argv->words==0)
+haventfork.c:189:	argv = mkargv(runq->argv->words);
+haventfork.c:191:	for(path = searchpath(runq->argv->words->word);path;path = path->next){
+here.c:62:		while((c = rchr(runq->cmdfd))!=EOF){
+lex.c:65:	if(runq->eof)
+lex.c:69:	c = rchr(runq->cmdfd);
+lex.c:71:		c = rchr(runq->cmdfd);
+lex.c:83:		runq->eof++;
+lex.c:93:	if(runq->iflag){
+lex.c:102:	runq->lineno++;
+plan9.c:60:	switch(count(runq->argv->words)){
+plan9.c:66:		for(s = runq->argv->words->next->word;*s;s++) switch(*s){
+plan9.c:90:		pfmt(err, "Usage: %s [fnesFNEm]\n", runq->argv->words->word);
+plan9.c:96:		pfmt(err, "rc: %s failed\n", runq->argv->words->word);
+plan9.c:211:	start(rdfns, 1, runq->local);
+plan9.c:231:		for(p = runq->ret;p;p = p->ret)
+plan9.c:305:		updenvlocal(runq->local);
+readline.c:88:	if(runq->iflag){
+readline.c:98:	runq->lineno++;
+readline.c:110:	assert(runq->iflag);
+simple.c:14:	union code *c=&runq->code[runq->pc];
+simple.c:28:	a = runq->argv->words;
+simple.c:116:	if(runq->argv->words==0){
+simple.c:120:	doredir(runq->redir);
+simple.c:121:	Execute(runq->argv->words, searchpath(runq->argv->words->word));
+simple.c:130:	starval = runq->argv->words;
+simple.c:131:	runq->argv->words = 0;
+simple.c:133:	start(func->fn, func->pc, runq->local);
+simple.c:134:	runq->local = newvar(strdup("*"), runq->local);
+simple.c:135:	runq->local->val = starval;
+simple.c:136:	runq->local->changed = 1;
+simple.c:157:	word *a = runq->argv->words;
+simple.c:203:	switch(count(runq->argv->words)){
+simple.c:207:		setstatus(runq->argv->words->next->word);
+simple.c:218:	switch(count(runq->argv->words)){
+simple.c:225:		n = atoi(runq->argv->words->next->word);
+simple.c:256:	for(rp = runq->redir;rp;rp = rp->next){
+simple.c:283:	start(rdcmds, 1, runq->local);
+simple.c:284:	runq->cmdfd = f;
+simple.c:285:	runq->iflast = 0;
+simple.c:294:	if(count(runq->argv->words)<=1){
+simple.c:299:	for(ap = runq->argv->words->next;ap;ap = ap->next)
+simple.c:303:	for(ap = runq->argv->words->next;ap;ap = ap->next){
+simple.c:377:	runq->cmdfile = zero;
+simple.c:378:	runq->cmdfd = openfd(fd);
+simple.c:379:	runq->iflag = iflag;
+simple.c:380:	runq->iflast = 0;
+simple.c:383:	runq->argv->words = p->argv->words;
+simple.c:398:	switch(count(runq->argv->words)){
+simple.c:400:		setstatus(flag[(uchar)runq->argv->words->next->word[0]]?"":"flag not set");
+simple.c:403:		letter = runq->argv->words->next->word;
+simple.c:404:		val = runq->argv->words->next->next->word;
+simple.c:430:	a = runq->argv->words->next;
+simple.c:492:	switch(count(runq->argv->words)){
+simple.c:497:		Waitfor(atoi(runq->argv->words->next->word), 0);
+subr.c:31:	if(runq->cmdfile && !runq->iflag)
+subr.c:32:		pfmt(err, "%s:%d: ", runq->cmdfile, runq->lineno);
+subr.c:33:	else if(runq->cmdfile)
+subr.c:34:		pfmt(err, "%s: ", runq->cmdfile);
+subr.c:35:	else if(!runq->iflag)
+subr.c:36:		pfmt(err, "line %d: ", runq->lineno);
+trap.c:21:			runq->local = newvar(strdup("*"), runq->local);
+trap.c:22:			runq->local->val = copywords(starval, (struct word *)0);
+trap.c:23:			runq->local->changed = 1;
+trap.c:24:			runq->redir = runq->startredir = 0;
+trap.c:33:			while(!runq->iflag) Xreturn();
+unix.c:119:	start(rdfns, 1, runq->local);
+unix.c:143:	for(v = h >= gvar? *h: runq->local; v ;v = v->next){
+unix.c:159:	for(v = h >= gvar? *h: runq->local;v;v = v->next){
+unix.c:250:			for(p = runq->ret;p;p = p->ret)
+unix.c:520:	switch(count(runq->argv->words)){
+unix.c:527:		umask(octal(runq->argv->words->next->word));
+var.c:74:		for(v = runq->local;v;v = v->next)
+win32.c:150:	start(rdfns, 1, runq->local);
+win32.c:166:		for(p = runq->ret;p;p = p->ret)
+win32.c:240:		updenvlocal(runq->local);
