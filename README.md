@@ -8,7 +8,7 @@ In a terminal run:
 ```
 cd rc
 make
-make insall 
+make install 
 
 ```
 
