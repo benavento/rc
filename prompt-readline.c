@@ -5,6 +5,7 @@
 #include "getflags.h"
 #include <assert.h>
 #include <errno.h>
+#include <stdio.h>
 #include <sys/stat.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -19,7 +20,7 @@ static char*
 matches_rl(const char *s, int i)
 {
     word *w;
-    
+
 	for(w=vlook(COMPLETE_RESULTS)->val; w; w=w->next, i--)
 		if(i == 0)
 			return strdup(w->word);
@@ -64,7 +65,7 @@ complete_rl(const char *text, int p0, int p1)
 	complete[i++].f = Xassign;
 	complete[i++].f = Xreturn;
 	start(complete, 1, NULL);
-	
+
 	while(runq != oldrunq){
 		if(flag['r']) pfnc(err, runq);
 		(*runq->code[runq->pc++].f)();
@@ -72,7 +73,7 @@ complete_rl(const char *text, int p0, int p1)
 	}
 
 	l = rl_completion_matches(text, matches_rl);
-	
+
 	/* if dir append '/' if not already there */
 	if(l==NULL && stat(text, &st)==0 && S_ISDIR(st.st_mode) && text[(p1-p0)-1]!='/'){
 		 l = emalloc(sizeof(char*)*2);
@@ -101,15 +102,15 @@ read_rl(void)
 		/* I/O */
 		rl_readline_name = "rc";	/* for .editrc */
 		rl_outstream = fdopen(err->fd, "w");	// stderr
-		
+
 		/* signals */
 		// rl_catch_signals = 0;
-		
+
 		/* complete */
 		rl_completion_append_character = '\0';
 		rl_completer_quote_characters = "'";
 		rl_attempted_completion_function = complete_rl;
-		
+
 		/* history */
 		if (read_history(NULL)!=0 && errno!=ENOENT)
 			pfmt(err, "rc: read_history: %s\n", strerror(errno));
@@ -127,7 +128,7 @@ read_rl(void)
 	f->buf[n++] = '\n';
 	f->bufp = f->buf;
 	f->ebuf = f->buf+n;
-	
+
 	add_history(s);
 	free(s);
 }
@@ -136,7 +137,7 @@ void
 pprompt(void)
 {
 	var *prompt;
-	
+
 	if(runq->iflag){
 		flush(err);
 		read_rl();
@@ -156,7 +157,7 @@ exechistory(void)
 	HIST_ENTRY *e;
 	struct io out[1];
 	int i;
-	
+
 	setstatus("");
 	out->fd = mapfd(1);
 	out->bufp = out->buf;
