@@ -2,6 +2,6 @@ O=o
 YACC=yacc -d
 PREFIX=/usr/local
 WARNINGS=-Wall -Wextra -Wno-parentheses -Wno-missing-braces -Wno-missing-field-initializers -Wno-comment -Wno-sign-compare -Wno-unused-parameter -Wno-implicit-fallthrough #-Werror
-CFLAGS=-g $(WARNINGS) -DPREFIX=\"$(PREFIX)\"
+CFLAGS=-g $(WARNINGS) -DPREFIX=\"$(PREFIX)\" -D_XOPEN_SOURCE=500
 LFLAGS=-lreadline
 PROMPT=readline
