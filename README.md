@@ -8,7 +8,7 @@ In a terminal run:
 ```
 cd rc
 make
-make install 
+make install
 
 ```
 
@@ -65,4 +65,4 @@ fn complete {
 
 ## Documentation ##
 * [Rc — The Plan 9 Shell](http://9p.io/sys/doc/rc.html)
-* [*rc(1)*](http://9p.io/magic/man2html?man=rc&sect=1l)
+* [*rc(1)*](./rc.md)
