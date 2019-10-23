@@ -14,6 +14,7 @@
 #include <sys/wait.h>
 #include <dirent.h>
 #include <assert.h>
+#include <limits.h>
 
 char *Rcmain = PREFIX "/lib/rcmain";
 char *Fdprefix = "/dev/fd/";
@@ -321,7 +322,7 @@ Bad:
 	efree((char *)argv);
 }
 
-#define	NDIR	MAXNAMLEN		/* should get this from param.h */
+#define	NDIR	NAME_MAX
 
 int
 Globsize(register char *p)
