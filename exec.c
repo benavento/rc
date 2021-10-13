@@ -6,7 +6,6 @@
 /*
  * Start executing the given code at the given pc with the given redirection
  */
-char *argv0="rc";
 
 void
 start(code *c, int pc, var *local)

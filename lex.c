@@ -3,7 +3,11 @@
 #include "io.h"
 #include "getflags.h"
 #include "fns.h"
-int getnext(void);
+
+static int future = EOF;
+static int inquote;
+static int incomm;
+static int getnext(void);
 
 int
 wordchr(int c)
@@ -21,10 +25,6 @@ idchr(int c)
 	 */
 	return c>' ' && !strchr("!\"#$%&'()+,-./:;<=>?@[\\]^`{|}~", c);
 }
-int future = EOF;
-int doprompt = 1;
-int inquote;
-int incomm;
 /*
  * Look ahead in the input stream
  */
@@ -52,7 +52,7 @@ advance(void)
  * read a character from the input stream
  */	
 
-int
+static int
 getnext(void)
 {
 	int c;
@@ -163,8 +163,6 @@ addutf(char *p, int c)
 	}
 	return p;
 }
-int lastdol;	/* was the last token read '$' or '$#' or '"'? */
-int lastword;	/* was the last token read a word or compound word terminator? */
 
 int
 yylex(void)

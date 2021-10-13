@@ -3,6 +3,7 @@ include Make.$(shell uname)
 TARG=rc
 
 OFILES=\
+        globals.$O \
 	code.$O\
 	exec.$O\
 	getflags.$O\

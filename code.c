@@ -15,7 +15,6 @@ char *fnstr(tree*);
 void outcode(tree*, int);
 void codeswitch(tree*, int);
 int iscase(tree*);
-code *codecopy(code*);
 void codefree(code*);
 
 int
