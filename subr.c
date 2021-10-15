@@ -22,7 +22,6 @@ efree(void *p)
 		free(p);
 	else pfmt(err, "free 0\n");
 }
-extern int lastword, lastdol;
 
 void
 yyerror(char *m)
